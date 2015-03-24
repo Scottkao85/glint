@@ -47,6 +47,16 @@ npm install
 bower install
 ```
 
+## Running it locally for development purposes
+Running a local server and a local mongoDB instance are your first steps to start developing Glint on your own machine.
+
+First, do `brew install mongodb`to install mongoDB.
+Then, run `sudo mkdir -p /data/db` to create the default directory where your local mongo instance will live.
+
+After doing this, you will run `sudo mongod` to spin up a local mongoDB instance.
+
+Now running `grunt upload` from the tasks below will run the server locally with access to the local mongoDB instance. Wooh!
+
 ## Tasks
 
 From within the root directory:
