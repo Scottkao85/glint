@@ -29,8 +29,8 @@ var app = angular.module('glint', [
         templateUrl: 'app/auth/signup.html',
         controller: "AuthCtrl as actrl"
       })
-    .when('/ideas', {
-        templateUrl: 'app/auth/signup.html',
+    .when('/ideas/:_id', {
+        templateUrl: 'app/ideas/ideaDetail.html',
         controller: "AuthCtrl as actrl"
       })
     .otherwise({
