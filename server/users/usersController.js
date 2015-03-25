@@ -5,13 +5,17 @@
 
 // The bcrypt module is used to salt and encrypt passwords
 var bcrypt = require('bcrypt');
-var session = require('express-session');
+// var session = require('express-session');
 
 module.exports = {
 
   
   // Log in an existing user, create a session
   login: function(req, res, next) {
+    var username = req.body.username;
+    var password = req.body.password;
+    console.log('request has:', username, password);
+
     // (use below as model)
     // // Bind the Mongoose find method to the Idea model, so that the Q module can use promises with it.
     // var findAllIdeas = Q.nbind(Idea.find, Idea);
@@ -27,6 +31,9 @@ module.exports = {
 
   // Sign up a new user, and start their first session
   signup: function(req, res, next) {
+    var username = req.body.username;
+    var password = req.body.password;
+    console.log('request has:', username, password);
     // (use below as model)
     // // Bind the Mongoose create method to the Idea model, so that the Q module can use promises with it.
     // var createIdea = Q.nbind(Idea.create, Idea);

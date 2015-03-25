@@ -14,17 +14,21 @@ var app = angular.module('glint', [
   'ngRoute'
   ])
 
-// Routing configuration. Eventually, this is where the controllers for the specific views will be declared, so they don't have to be referred to in our HTML. (Eg. <varname> instead of AuthCtrl.<varname>)
+// Routing configuration, determines which view and controller to use
 .config(function($routeProvider){
 	$routeProvider
 		.when('/', {
-        templateUrl: 'app/ideas/ideas.html'
+        templateUrl: 'app/ideas/ideas.html',
+        // refactor to specify controller here
+        controller: "IdeasCtrl as ictrl"
       })
     .when('/login', {
-        templateUrl: 'app/auth/login.html'
+        templateUrl: 'app/auth/login.html',
+        controller: "AuthCtrl as actrl"
       })
     .when('/signup', {
-        templateUrl: 'app/auth/signup.html'
+        templateUrl: 'app/auth/signup.html',
+        controller: "AuthCtrl as actrl"
       })
     .otherwise({
         redirectTo: '/'
