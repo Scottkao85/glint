@@ -67,7 +67,7 @@ glintServices.factory('Votes', function($http){
   };
 });
 
-glintServices.factory('Auth', function($http){
+glintServices.factory('Auth', function($http, $location){
 
   var login = function (user){
     return $http({
@@ -75,8 +75,11 @@ glintServices.factory('Auth', function($http){
       url: '/api/users/signin',
       data: user
     })
-    .then(function (response){
-      return response.data.token;
+    .success(function (response){
+      $location.url('/#');
+    })
+    .error(function(response){
+      $location.url('/#/login');
     })
     .catch(function (error) {
       console.error('login error', error);
@@ -88,8 +91,11 @@ glintServices.factory('Auth', function($http){
       url: '/api/users/signup',
       data: user
     })
-    .then(function (response){
-      return response.data;
+    .success(function (response){
+      $location.url('/#');
+    })
+    .error(function(response){
+      $location.url('/#/signup');
     })
     .catch(function (error) {
       console.error('signup error', error);

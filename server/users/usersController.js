@@ -16,20 +16,21 @@ module.exports = {
   login: function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
-    console.log('request has:', username, password);
 
     User.findOne({ username: username })
-    .exec(function(err,user) {
-      if (!user) {
-        res.redirect('/login');
-      } else {
-        var savedPassword = user.password;
-        User.comparePassword(password, savedPassword, function(err, match) {
-          if (match) {
-            util.createSession(req, res, user);
-          } else {
-            res.redirect('/login');
-          }
+      .exec(function(err,user) {
+        if (!user) {
+          res.send(404);
+        } else {
+          var savedPassword = user.password;
+          User.comparePassword(password, savedPassword, function(err, match) {
+            if (match) {
+              // console.log('logged in');
+              util.createSession(req, res, user);
+              // res.redirect('/#');
+            } else {
+              res.send(404);
+            }
         });
       }
     });
@@ -57,7 +58,7 @@ module.exports = {
         });
       } else {
         console.log('Account already exists');
-        res.redirect('/#/signup');
+        res.send(404);
       }
     });
   }
