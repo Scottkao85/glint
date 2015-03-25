@@ -31,6 +31,27 @@ glintServices.factory('Ideas', function ($http){
   };
 });
 
+glintServices.factory('IdeaDetail', function ($http){
+
+  var getContributors = function(idea_id){
+
+  };
+
+  var addContributor = function(user_id){
+
+  };
+
+  var removeContributor = function(user_id){
+
+  };
+
+  return {
+    getContributors: getContributors,
+    addContributor: addContributor,
+    removeContributor: removeContributor
+  };
+});
+
 glintServices.factory('Votes', function($http){
 
   var upvote = function (idea){
