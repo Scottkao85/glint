@@ -21,8 +21,9 @@ module.exports = {
 
   createSession: function(req, res, newUser) {
     return req.session.regenerate(function() {
+      console.log('NEW USER~!!,', newUser);
       req.session.user = newUser;
-      res.redirect('/');
+      res.redirect('/#');
     });
   }
 

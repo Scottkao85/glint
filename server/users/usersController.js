@@ -18,17 +18,21 @@ module.exports = {
     var password = req.body.password;
     console.log('request has:', username, password);
 
-    // (use below as model)
-    // // Bind the Mongoose find method to the Idea model, so that the Q module can use promises with it.
-    // var findAllIdeas = Q.nbind(Idea.find, Idea);
-    
-    // findAllIdeas({})
-    //   .then(function(ideas) {
-    //     res.json(ideas);
-    //   })
-    //   .fail(function(error) {
-    //     next(error);
-    //   });
+    User.findOne({ username: username })
+    .exec(function(err,user) {
+      if (!user) {
+        res.redirect('/login');
+      } else {
+        var savedPassword = user.password;
+        User.comparePassword(password, savedPassword, function(err, match) {
+          if (match) {
+            util.createSession(req, res, user);
+          } else {
+            res.redirect('/login');
+          }
+        });
+      }
+    });
   },
 
   // Sign up a new user, and start their first session

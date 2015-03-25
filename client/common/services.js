@@ -76,7 +76,7 @@ glintServices.factory('Auth', function($http){
       data: user
     })
     .then(function (response){
-      return response.data;
+      return response.data.token;
     })
     .catch(function (error) {
       console.error('login error', error);
