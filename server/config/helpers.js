@@ -2,6 +2,8 @@
 // ------------------------------------
 //
 // These helper utility functions are used for logging and handling errors on the server-side. 
+var request = require('request');
+
 
 module.exports = {
 
@@ -15,6 +17,14 @@ module.exports = {
   handleErrors: function(err, req, res, next) {
     // Send client the error message.
     res.send(500, {error: err.message});
+  },
+
+  createSession: function(req, res, newUser) {
+    return req.session.regenerate(function() {
+      req.session.user = newUser;
+      res.send(200);
+      // res.redirect('/#');
+    });
   }
 
 };
