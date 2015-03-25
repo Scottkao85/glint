@@ -29,6 +29,10 @@ var app = angular.module('glint', [
         templateUrl: 'app/auth/signup.html',
         controller: "AuthCtrl as actrl"
       })
+    .when('/ideas', {
+        templateUrl: 'app/auth/signup.html',
+        controller: "AuthCtrl as actrl"
+      })
     .otherwise({
         redirectTo: '/'
       });
