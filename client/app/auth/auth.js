@@ -24,6 +24,7 @@ angular.module('glint.auth', [])
 
   // Allow user to first-time identify themselves to the system.
   self.signup = function() {
+    console.log('signing you up');
     self.user.username = _.escape(self.user.username);
     self.user.password = _.escape(self.user.password);
     var user = JSON.stringify(self.user);

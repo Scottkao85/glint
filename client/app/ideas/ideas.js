@@ -25,6 +25,7 @@ angular.module('glint.ideas', [])
 
   // Submit a new idea.
   self.submitIdea = function ($timeout){
+    console.log('submitting your idea');
 
     // Show description box.
     if (self.submitted === false){
