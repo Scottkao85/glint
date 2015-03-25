@@ -29,7 +29,15 @@ var app = angular.module('glint', [
         templateUrl: 'app/auth/signup.html',
         controller: "AuthCtrl as actrl"
       })
+<<<<<<< HEAD
     .when('/ideas/:_id', {
+=======
+    .when('/ideas/:_id/contributors', {
+        templateUrl: 'app/ideaDetail/ideaDetail.html',
+        controller: "AuthCtrl as actrl"
+      })
+    .when('/ideas/:_id/comments', {
+>>>>>>> Create separate folder for idea detail page
         templateUrl: 'app/ideas/ideaDetail.html',
         controller: "AuthCtrl as actrl"
       })
