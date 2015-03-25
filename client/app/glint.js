@@ -19,7 +19,6 @@ var app = angular.module('glint', [
 	$routeProvider
 		.when('/', {
         templateUrl: 'app/ideas/ideas.html',
-        // refactor to specify controller here
         controller: "IdeasCtrl as ictrl"
       })
     .when('/login', {
