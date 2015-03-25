@@ -7,6 +7,7 @@
 var app = angular.module('glint', [
   'glint.services',
   'glint.ideas',
+  'glint.ideaDetail',
   'glint.votes',
   'glint.auth',
   'glint.comments',
@@ -34,7 +35,7 @@ var app = angular.module('glint', [
 =======
     .when('/ideas/:_id/contributors', {
         templateUrl: 'app/ideaDetail/ideaDetail.html',
-        controller: "AuthCtrl as actrl"
+        controller: "IdeaContributorsCtrl as icbctrl"
       })
     .when('/ideas/:_id/comments', {
 >>>>>>> Create separate folder for idea detail page
