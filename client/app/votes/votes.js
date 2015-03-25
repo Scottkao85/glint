@@ -14,6 +14,7 @@ angular.module('glint.votes', [])
     Votes.upvote(idea)
       .then(function (response){
         // Update the specific idea's vote count.
+        // TODO: limit votes to one per user
         ideaRef.votes++;
       })
       .catch(function (error){
@@ -29,6 +30,7 @@ angular.module('glint.votes', [])
     Votes.downvote(idea)
       .then(function (response){
         // Update the specific idea's vote count.
+        // TODO: limit votes to one per user
         ideaRef.votes--;
       })
       .catch(function (error){
