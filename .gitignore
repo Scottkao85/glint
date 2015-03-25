@@ -2,6 +2,7 @@
 
 .gitignore
 .DS_Store
+client/.DS_Store
 
 # Logs
 logs
