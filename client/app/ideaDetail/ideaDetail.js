@@ -14,6 +14,11 @@ angular.module('glint.ideaDetail', [])
   self.init = function(){
     console.log('calling init');
     self._id = $route.current.params._id;
+    IdeaDetail.getIdea(self._id).then(function(idea){
+      console.log('great idea!');
+      self.idea = idea;
+    });
+    console.log('response to controller: ', self.idea);
   };
 
   // Display all ideas currently in the database.
