@@ -1,6 +1,6 @@
-<div ng-init="iclctrl.init()"></div>
-<div class="jumbotron jumbo-top"> 
-  <h1 class="animated fadeInUp">{{iclctrl.idea.title}}</h1>
+<!-- <div ng-init="clctrl.init()"></div>
+ --><div class="jumbotron jumbo-top"> 
+  <h1 class="animated fadeInUp">{{clctrl.idea.title}}</h1>
 </div>
 
 <!-- User Feedback Message Area -->
@@ -11,44 +11,33 @@
 <!-- Navigate between collaborators and comments -->
 <div class="detail-mode">
   <ul>
-    <li><a href="#/ideas/{{iclctrl._id}}/collaborators">Collaborators</a></li>
-    <li><a href="#/ideas/{{iclctrl._id}}/comments">Comments</a></li>
+    <li><a href="#/ideas/{{clctrl._id}}/collaborators">Collaborators</a></li>
+    <li><a href="#/ideas/{{clctrl._id}}/comments">Comments</a></li>
   </ul>
 </div>
 
 <!-- Form to join as a collaborator -->
-<form ng-submit="iclctrl.submitCollaborator()">
+<form ng-submit="clctrl.submitCollaborator()">
 
   <!-- Enter Your Role -->
   <div class="form-idea animated fadeInUp">
-    <input name="idea-input" type="text" class="form-control form-title-control" placeholder="Your role here" ng-model="iclctrl.newCollaborator.role" required>{{iclctrl.newCollaborator.role}}
+    <input name="idea-input" type="text" class="form-control form-title-control" placeholder="Your role here" ng-model="clctrl.newCollaborator.role" required>{{clctrl.newCollaborator.role}}
   </div>
   
   <button type="submit" class="btn btn-primary idea-submit-button animated fadeInUp">Become a collaborator</button>
 </form>
 
-<!-- Idea Row -->
-<div class="row idea-post ng-cloak idea-post-repeat" ng-repeat="idea in ictrl.data.ideas track by idea._id"> 
+<!-- List Collaborators, row by row -->
+<div class="row idea-post ng-cloak idea-post-repeat" ng-repeat="collaborator in clctrl.collaborators track by collaborator._id"> 
   <div class="col-md-1">
   </div>
 
   <div class="idea-container">
-    <div class="col-md-1 upvote-downvote-wrapper" ng-controller="VotesCtrl as vctrl">
-      <i class="fa fa-sort-asc" ng-click="vctrl.upvote(idea)"></i> <!-- upvote -->
-      <div class="vote-points">{{ idea.votes }}</div>
-      <i class="fa fa-sort-desc" ng-click="vctrl.downvote(idea)"></i> <!-- downvote -->
-    </div>
     <div class="col-md-8">
       <div class="idea-wrapper">
-        <h3 class="idea-title"><a href="#/ideas/{{idea._id}}">{{ idea.title }}</a></h3>
-        <h5 class="idea-description">{{ idea.text | limitTo: 130 }}{{ idea.text.length > 130 ? '...' : ''}}</h5>
-        <p class="timestamp-author">Submitted {{ idea.created_at | moment }} by {{ idea.created_by }}</p>
-      </div>
-    </div>
-    <div class="col-md-1 ">
-      <div class="comments-wrapper">
-        <i class="fa fa-comments"></i>
-        <p class="comments-amount">532</p>
+        <h3 class="idea-title"><a href="(broken link to user profile)">{{ collaborator.username }}</a></h3>
+        <h5 class="idea-description">{{ collaborator.role }}</h5>
+        <!-- <p class="timestamp-author">Submited {{ idea.created_at | moment }} by {{ idea.created_by }}</p> -->
       </div>
     </div>
   </div>

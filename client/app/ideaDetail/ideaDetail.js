@@ -6,42 +6,26 @@
 angular.module('glint.ideaDetail', [])
 .controller('IdeaCollaboratorsCtrl', function (IdeaDetail, Ideas, $filter, $route){
   var self = this;
-  self.data = { ideas: [] };
-  // self.idea = {};
   self.postSuccess = false;
   self.submitted = false;
   self.newCollaborator = {};
 
   self.init = function(){
-    console.log('calling init');
     self._id = $route.current.params._id;
     IdeaDetail.getIdea(self._id).then(function(idea){
       self.idea = idea;
-      console.log('great idea:', self.idea);
+      self.collaborators = self.idea.collaborators;
+      // TODO: figure out whether current user is creator or a collaborator
+      // self.userIsCreator = 
+      // self.userIsCollaborator = 
     });
-    console.log('response to controller: ', self.idea);
-  };
-
-  // Display all ideas currently in the database.
-  self.displayIdeas = function(){
-    Ideas.getIdeas()
-      .then(function (results){
-        results = $filter('orderBy')(results, 'votes', true);
-        self.data.ideas = results;
-      })
-      .catch(function (error){
-        console.error('displayIdeas error', error);
-      });
   };
 
   // Submit a new idea.
   self.submitCollaborator = function ($timeout){
     console.log('submitting yourself as a collaborator');
 
-    // Show description box.
-    // if (self.submitted === false){
-    //   self.submitted = true;
-    // } else {
+
 
     // Escape user input.
     self.newCollaborator.username = 'Miguel';
@@ -57,9 +41,6 @@ angular.module('glint.ideaDetail', [])
         self.postSuccess = true;
         // Hide idea description field.
         self.submitted = false;
-        // Clear form fields after submit.
-        self.idea = {};
-        self.displayIdeas();
       })
       .catch(function (error){
         console.error('createIdea error', error);
@@ -67,5 +48,5 @@ angular.module('glint.ideaDetail', [])
     
   };
 
-  self.displayIdeas();
+  self.init();
 });
