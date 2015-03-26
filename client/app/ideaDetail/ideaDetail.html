@@ -1,12 +1,31 @@
-<div ng-init="icbctrl.init()"></div>
+<div ng-init="iclctrl.init()"></div>
 <div class="jumbotron jumbo-top"> 
-  <h1 class="animated fadeInUp">{{icbctrl.idea.title}}</h1>
+  <h1 class="animated fadeInUp">{{iclctrl.idea.title}}</h1>
 </div>
 
 <!-- User Feedback Message Area -->
 <div class="user-feedback-container ng-cloak post-idea-animation" ng-if="ictrl.postSuccess" ng-click="ictrl.postSuccess = !ictrl.postSuccess">
   <span class="post-idea-success">Your idea has been posted.</span>
 </div>
+
+<!-- Navigate between collaborators and comments -->
+<div class="detail-mode">
+  <ul>
+    <li><a href="#/ideas/{{iclctrl._id}}/collaborators">Collaborators</a></li>
+    <li><a href="#/ideas/{{iclctrl._id}}/comments">Comments</a></li>
+  </ul>
+</div>
+
+<!-- Form to join as a collaborator -->
+<form ng-submit="iclctrl.submitCollaborator()">
+
+  <!-- Enter Your Role -->
+  <div class="form-idea animated fadeInUp">
+    <input name="idea-input" type="text" class="form-control form-title-control" placeholder="Your role here" ng-model="iclctrl.newCollaborator.role" required>{{iclctrl.newCollaborator.role}}
+  </div>
+  
+  <button type="submit" class="btn btn-primary idea-submit-button animated fadeInUp">Become a collaborator</button>
+</form>
 
 <!-- Idea Row -->
 <div class="row idea-post ng-cloak idea-post-repeat" ng-repeat="idea in ictrl.data.ideas track by idea._id"> 

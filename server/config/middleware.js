@@ -14,9 +14,10 @@ module.exports = function (app, express) {
 
   // Create Express routers for each type of route.
   var ideaRouter = express.Router();
-  var voteRouter = express.Router();
-  var commentRouter = express.Router();
   var userRouter = express.Router();
+  var voteRouter = express.Router();
+  var collaboratorRouter = express.Router();
+  var commentRouter = express.Router();
 
   // Associate the Express server app with the different modules that it should use.
   app.use(bodyParser.urlencoded({extended: true}));
@@ -28,16 +29,21 @@ module.exports = function (app, express) {
 
   // Use the idea router for all idea requests.
   app.use('/api/ideas', ideaRouter); 
+  // Use user router for requests related to users and accounts
+  app.use('/api/users', userRouter);
   // Use vote router for requests related to upvoting or downvoting.
   app.use('/api/vote', voteRouter);
+  // Use collaborator router for requests related to collaborators.
+  app.use('/api/collaborators', collaboratorRouter);
   // Use comment router for requests related to adding and getting comments.
   app.use('/api/comments', commentRouter);
-  // Use user router for requests related to signup and login.
-  app.use('/api/users', userRouter);
+
+
 
   // Inject our Express routers into their respective route files.
   require('../ideas/ideaRoutes.js')(ideaRouter);
-  require('../votes/voteRoutes.js')(voteRouter);
-  require('../comments/commentRoutes.js')(commentRouter);
   require('../users/usersRoutes.js')(userRouter);
+  require('../votes/voteRoutes.js')(voteRouter);
+  require('../collaborators/collaboratorRoutes.js')(collaboratorRouter);
+  require('../comments/commentRoutes.js')(commentRouter);
 };

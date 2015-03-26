@@ -4,19 +4,20 @@
 
 // The pattern we're using here is the pattern we're using across all our controllers: the controllerAs syntax. This syntax is for Angular versions 1.2 and up, and means you don't have to use `$scope` anymore. Instead, inside of your HTML, you declare your controller with `ng-controller="IdeasCtrl as ictrl"` and reference your variables within that controlled scope as `ictrl.<varname>`. Additionally, instead of setting your properties within your controller to `$scope`, assign your controller's `this` to a variable called self and set your properties to that. 
 angular.module('glint.ideaDetail', [])
-.controller('IdeaContributorsCtrl', function (IdeaDetail, Ideas, $filter, $route){
+.controller('IdeaCollaboratorsCtrl', function (IdeaDetail, Ideas, $filter, $route){
   var self = this;
   self.data = { ideas: [] };
-  self.idea = {};
+  // self.idea = {};
   self.postSuccess = false;
   self.submitted = false;
+  self.newCollaborator = {};
 
   self.init = function(){
     console.log('calling init');
     self._id = $route.current.params._id;
     IdeaDetail.getIdea(self._id).then(function(idea){
-      console.log('great idea!');
       self.idea = idea;
+      console.log('great idea:', self.idea);
     });
     console.log('response to controller: ', self.idea);
   };
@@ -34,8 +35,8 @@ angular.module('glint.ideaDetail', [])
   };
 
   // Submit a new idea.
-  self.submitIdea = function ($timeout){
-    console.log('submitting your idea');
+  self.submitCollaborator = function ($timeout){
+    console.log('submitting yourself as a collaborator');
 
     // Show description box.
     if (self.submitted === false){
@@ -43,12 +44,13 @@ angular.module('glint.ideaDetail', [])
     } else {
 
     // Escape user input.
-    self.idea.title = _.escape(self.idea.title);
-    self.idea.text = _.escape(self.idea.text);
-    var idea = JSON.stringify(self.idea);
+    self.newCollaborator.username = 'Miguel';
+    self.newCollaborator.idea_id = self._id;
+    self.newCollaborator.role = _.escape(self.newCollaborator.role);
+    var collab = JSON.stringify(self.newCollaborator);
     
     // POST new idea, display confirmation, redisplay all ideas.
-    Ideas.createIdea(idea)
+    IdeaDetail.addCollaborator(collab)
       .then(function (response){
         // Show user feedback.
         self.postSuccess = true;
