@@ -10,4 +10,6 @@ module.exports = function (app) {
     app.route('/')
       .get(ideaController.allIdeas)
       .post(ideaController.newIdea);
+    app.route('/*')
+      .get(ideaController.oneIdea);
 };
