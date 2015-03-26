@@ -12,7 +12,8 @@ var app = angular.module('glint', [
   'glint.auth',
   'glint.comments',
   'ngAnimate',
-  'ngRoute'
+  'ngRoute',
+  'glint.navbar'
   ])
 
 // Routing configuration, determines which view and controller to use
