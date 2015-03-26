@@ -35,7 +35,7 @@ var app = angular.module('glint', [
         controller: "IdeaContributorsCtrl as icbctrl"
       })
     .when('/ideas/:_id/comments', {
-        templateUrl: 'app/ideaDetail/ideaDetail.html',
+        templateUrl: 'app/ideas/ideaDetail.html',
         controller: "AuthCtrl as actrl"
       })
     .otherwise({
