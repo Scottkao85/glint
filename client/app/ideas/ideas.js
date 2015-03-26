@@ -11,6 +11,9 @@ angular.module('glint.ideas', [])
   self.postSuccess = false;
   self.submitted = false;
 
+
+  self.username = localStorage.getItem('com.glint.user');
+
   // Display all ideas currently in the database.
   self.displayIdeas = function(){
     Ideas.getIdeas()
