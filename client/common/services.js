@@ -33,9 +33,17 @@ glintServices.factory('Ideas', function ($http){
 
 glintServices.factory('IdeaDetail', function ($http){
 
-  var getContributors = function(idea_id){
-
-  };
+  var getIdea = function(idea_id){
+    return $http({
+      method: 'GET',
+      url: '/api/ideas/' + idea_id
+    }).then(function (response){
+      console.log('factory sees:', response);
+      return response.data;
+    }).catch(function (error) {
+      console.error('getIdeas error', error);
+    });
+  }
 
   var addContributor = function(user_id){
 
@@ -46,7 +54,7 @@ glintServices.factory('IdeaDetail', function ($http){
   };
 
   return {
-    getContributors: getContributors,
+    getIdea: getIdea,
     addContributor: addContributor,
     removeContributor: removeContributor
   };
