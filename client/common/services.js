@@ -14,6 +14,7 @@ glintServices.factory('Ideas', function ($http){
   };
 
   var createIdea = function (idea){
+    console.log("this is idea:", idea)
     return $http({
       method: 'POST',
       url: '/api/ideas',
