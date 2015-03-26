@@ -5,12 +5,13 @@
 
 angular.module('glint.comments', [])
 
-.controller('CommentsCtrl', function (Comments){
+.controller('CommentsCtrl', function (Auth, Comments){
   var self = this;
   self.comment = {};
 
   // Submit eventual form inputs to the db and display something back to the user on success.
   self.submitComment = function (idea_id){
+    if(nav.token.userName){
 
     // The comment object needs to be populated with form inputs here.
     // User input will need to be escaped, and stringified. Refer to the comment schema for the fields needed, but likely `self.comment.text`, `self.comment.idea_id`, and `self.comment.created_by` will be necessary.
@@ -23,6 +24,9 @@ angular.module('glint.comments', [])
       .catch(function (error){
         console.error('comment error', error);
       });
+    }else{
+      console.log('not logged in')
+    }
   };
 
   // Display all comments for a specific idea.
