@@ -45,18 +45,27 @@ glintServices.factory('IdeaDetail', function ($http){
     });
   }
 
-  var addContributor = function(user_id){
-
+  var addCollaborator = function(collab){
+    console.log('factory adding collab');
+    return $http({
+      method: 'POST',
+      url: '/api/collaborators/',
+      data: collab 
+    }).then(function (response){
+      return response.data;
+    }).catch(function (error) {
+      console.error('createIdeas error', error);
+    });
   };
 
-  var removeContributor = function(user_id){
+  var removeCollaborator = function(user_id){
 
   };
 
   return {
     getIdea: getIdea,
-    addContributor: addContributor,
-    removeContributor: removeContributor
+    addCollaborator: addCollaborator,
+    removeCollaborator: removeCollaborator
   };
 });
 

@@ -17,11 +17,11 @@
 </div>
 
 <!-- Form to join as a collaborator -->
-<form ng-submit="ictrl.submitIdea()">
+<form ng-submit="iclctrl.submitCollaborator()">
 
   <!-- Enter Your Role -->
   <div class="form-idea animated fadeInUp">
-    <input name="idea-input" type="text" class="form-control form-title-control" placeholder="Your role here" ng-model="ictrl.idea.title" required>
+    <input name="idea-input" type="text" class="form-control form-title-control" placeholder="Your role here" ng-model="iclctrl.newCollaborator.role" required>{{iclctrl.newCollaborator.role}}
   </div>
   
   <button type="submit" class="btn btn-primary idea-submit-button animated fadeInUp">Become a collaborator</button>
