@@ -39,15 +39,16 @@ angular.module('glint.ideaDetail', [])
     console.log('submitting yourself as a collaborator');
 
     // Show description box.
-    if (self.submitted === false){
-      self.submitted = true;
-    } else {
+    // if (self.submitted === false){
+    //   self.submitted = true;
+    // } else {
 
     // Escape user input.
     self.newCollaborator.username = 'Miguel';
     self.newCollaborator.idea_id = self._id;
     self.newCollaborator.role = _.escape(self.newCollaborator.role);
     var collab = JSON.stringify(self.newCollaborator);
+    console.log("collab: ", collab);
     
     // POST new idea, display confirmation, redisplay all ideas.
     IdeaDetail.addCollaborator(collab)
@@ -63,7 +64,7 @@ angular.module('glint.ideaDetail', [])
       .catch(function (error){
         console.error('createIdea error', error);
       });
-    }
+    
   };
 
   self.displayIdeas();
