@@ -27,12 +27,18 @@
         <!-- <li><a href="#">User</a></li> -->
         <!-- <li><a href="#">Messages</a></li> -->
         <li><a href="http://adventurous-starfish.github.io/glint/">About</a></li>
+<<<<<<< HEAD
         <li><a class ="login" href="#/login" ng-if="!nav.token">Login</a></li>
         <li><a class ="login" href="#/login" ng-if="nav.token">{{nav.token}}</a></li>
         <li><a class ="login" href="#/login" ng-click="nav.hey()">clicked</a></li>
 >>>>>>> add: feature, able to see logged in user name in navbar
 
   <div ui-view="header"></div>
+=======
+        <li><a class ="login" href="#/login" ng-if="!nav.username">Login</a></li>
+        <li><a class ="login" href="#/login" ng-if="nav.username">Hello {{nav.username}}</a></li>
+        <li><a class ="login" href="#/" ng-if="nav.username" ng-click="nav.signout()">Log Out</a></li>
+>>>>>>> update: fix login with session cookie
 
 
   <div ui-view="content"></div>
