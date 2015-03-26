@@ -20,7 +20,25 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  salt: String
+
+  salt: String,
+
+  creations: [{
+    idea_id: String
+  }],
+
+  collaborations: [{
+    idea_id: String,
+    role: String
+  }],
+
+  upvotes: [{
+    idea_id: String
+  }],
+
+  downvotes: [{
+    idea_id: String
+  }]
 });
 
 UserSchema.methods.comparePasswords = function (candidatePassword) {
