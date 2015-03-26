@@ -285,3 +285,31 @@ a.glint-logo-icon:link{
   padding: 0;
   opacity: 0;
 }
+
+.details-container {
+  width: 100%;
+  padding: 16px;
+}
+
+.details-collaborators {
+  width: 50%;
+  border-right: 1px solid gray;
+}
+
+.details-comments {
+  width: 50%;
+}
+
+.form-collaborator {
+  display: inline;
+}
+
+.form-collaborator-textbox {
+  width: 95%;
+  line-height: 30px;
+  padding-left: 7px;
+}
+
+.form-group {
+  width: 75%;
+}

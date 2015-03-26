@@ -41,6 +41,7 @@ angular.module('glint.ideaDetail', [])
         self.postSuccess = true;
         // Hide idea description field.
         self.submitted = false;
+        self.init();
       })
       .catch(function (error){
         console.error('createIdea error', error);

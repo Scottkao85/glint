@@ -9,38 +9,43 @@
 </div>
 
 <!-- Navigate between collaborators and comments -->
-<div class="detail-mode">
+<!-- <div class="detail-mode">
   <ul>
     <li><a href="#/ideas/{{clctrl._id}}/collaborators">Collaborators</a></li>
     <li><a href="#/ideas/{{clctrl._id}}/comments">Comments</a></li>
   </ul>
-</div>
+</div> -->
+<div class="details-container">
+  <!--- left side of page -->
+  <div class="details-collaborators">
+    <!-- Form to join as a collaborator -->
+    <form class="form-inline" ng-submit="clctrl.submitCollaborator()">
 
-<!-- Form to join as a collaborator -->
-<form ng-submit="clctrl.submitCollaborator()">
+      <!-- Enter Your Role -->
+      <div class="form-group animated fadeInUp">
+        <input name="idea-input" type="text" class="form-collaborator-textbox" placeholder="Your role here" ng-model="clctrl.newCollaborator.role" required>
+      </div>
+      
+      <button type="submit" class="btn btn-primary idea-submit-button animated fadeInUp">Become a collaborator</button>
+    </form>
 
-  <!-- Enter Your Role -->
-  <div class="form-idea animated fadeInUp">
-    <input name="idea-input" type="text" class="form-control form-title-control" placeholder="Your role here" ng-model="clctrl.newCollaborator.role" required>{{clctrl.newCollaborator.role}}
-  </div>
-  
-  <button type="submit" class="btn btn-primary idea-submit-button animated fadeInUp">Become a collaborator</button>
-</form>
+    <!-- List Collaborators, row by row -->
+    <div class="row idea-post ng-cloak idea-post-repeat" ng-repeat="collaborator in clctrl.collaborators track by collaborator._id"> 
+      <div class="col-md-1">
+      </div>
 
-<!-- List Collaborators, row by row -->
-<div class="row idea-post ng-cloak idea-post-repeat" ng-repeat="collaborator in clctrl.collaborators track by collaborator._id"> 
-  <div class="col-md-1">
-  </div>
-
-  <div class="idea-container">
-    <div class="col-md-8">
-      <div class="idea-wrapper">
-        <h3 class="idea-title"><a href="(broken link to user profile)">{{ collaborator.username }}</a></h3>
-        <h5 class="idea-description">{{ collaborator.role }}</h5>
-        <!-- <p class="timestamp-author">Submited {{ idea.created_at | moment }} by {{ idea.created_by }}</p> -->
+      <div class="idea-container">
+        <div class="col-md-8">
+          <div class="idea-wrapper">
+            <!-- (broken link to user profile) -->
+            <h3 class="idea-title"><a href="/#collaborators">{{ collaborator.username }} - {{ collaborator.role }}</a></h3>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-1">
       </div>
     </div>
+    <!---right side of page-->
+    <div class="details-comments">
+    </div>
   </div>
-  <div class="col-md-1">
-  </div>
-</div>
