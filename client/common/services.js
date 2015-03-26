@@ -137,10 +137,14 @@ glintServices.factory('Auth', function ($http, $location, $window, $state) {
   var signout = function () {
     $window.localStorage.removeItem('com.glint');
 <<<<<<< HEAD
+<<<<<<< HEAD
     $state.go('login');
 =======
     $location.path('/signin');
 >>>>>>> update: fix login with session cookie
+=======
+    $state.go('login');
+>>>>>>> add: UrlRouteProvider :: successfully log in and log out with the correct router
   };
 
 
