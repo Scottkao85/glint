@@ -30,9 +30,9 @@ var app = angular.module('glint', [
         templateUrl: 'app/auth/signup.html',
         controller: "AuthCtrl as actrl"
       })
-    .when('/ideas/:_id/contributors', {
+    .when('/ideas/:_id/collaborators', {
         templateUrl: 'app/ideaDetail/ideaDetail.html',
-        controller: "IdeaContributorsCtrl as icbctrl"
+        controller: "IdeaCollaboratorsCtrl as iclctrl"
       })
     .when('/ideas/:_id/comments', {
         templateUrl: 'app/ideas/ideaDetail.html',

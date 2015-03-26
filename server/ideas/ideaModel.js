@@ -16,7 +16,14 @@ var IdeaSchema = new mongoose.Schema({
     category: { type: String, default: '' },
     tags: [String],
     roles: [String],
-    comments: [String],
+    collaborators: [{
+      username: String,
+      role: String
+    }],
+    comments: [{
+      username: String,
+      comment: String
+    }],
     delete_flag: { type: Boolean, default: false }
 });
 

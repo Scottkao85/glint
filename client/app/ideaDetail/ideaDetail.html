@@ -1,6 +1,6 @@
-<div ng-init="icbctrl.init()"></div>
+<div ng-init="iclctrl.init()"></div>
 <div class="jumbotron jumbo-top"> 
-  <h1 class="animated fadeInUp">{{icbctrl.idea.title}}</h1>
+  <h1 class="animated fadeInUp">{{iclctrl.idea.title}}</h1>
 </div>
 
 <!-- User Feedback Message Area -->
@@ -8,13 +8,29 @@
   <span class="post-idea-success">Your idea has been posted.</span>
 </div>
 
-<!-- Navigate between contributors and comments -->
+<!-- Navigate between collaborators and comments -->
 <div class="detail-mode">
   <ul>
-    <li><a href="#/ideas/{{icbctrl._id}}/contributors">Contributors</a></li>
-    <li><a href="#/ideas/{{icbctrl._id}}/comments">Comments</a></li>
+    <li><a href="#/ideas/{{iclctrl._id}}/collaborators">Collaborators</a></li>
+    <li><a href="#/ideas/{{iclctrl._id}}/comments">Comments</a></li>
   </ul>
 </div>
+
+<!-- Form to join as a collaborator -->
+<form class="navbar-form navbar-middle" ng-submit="ictrl.submitIdea()">
+
+  <!-- Enter Idea -->
+  <div class="form-idea animated fadeInUp">
+    <input name="idea-input" type="text" class="form-control form-title-control" placeholder="Enter idea here" ng-model="ictrl.idea.title" required>
+  </div>
+  
+  <!-- Enter Description -->
+  <div ng-if="ictrl.submitted" class="form-description ng-cloak">
+    <textarea name="description-input" rows="3" class="form-control form-description-control" placeholder="Enter description here" ng-model="ictrl.idea.text"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-default idea-submit-button animated fadeInUp">Submit</button>
+</form>
 
 <!-- Idea Row -->
 <div class="row idea-post ng-cloak idea-post-repeat" ng-repeat="idea in ictrl.data.ideas track by idea._id"> 
