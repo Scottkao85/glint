@@ -13,8 +13,12 @@ var app = angular.module('glint', [
   'glint.comments',
   'ngAnimate',
   'ngRoute',
+<<<<<<< HEAD
   'glint.navbar',
   'ui.router'
+=======
+  'glint.navbar'
+>>>>>>> add: feature, able to see logged in user name in navbar
   ])
 
 // Routing configuration, determines which view and controller to use
