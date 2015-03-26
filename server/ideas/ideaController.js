@@ -24,6 +24,23 @@ module.exports = {
       });
   },
 
+  oneIdea: function(req, res, next) {
+
+    var idea_id = req.url.slice(1);
+
+    // Bind the Mongoose find method to the Idea model, so that the Q module can use promises with it.
+    var query = Idea.where({ _id: idea_id });
+    query.findOne(function(err, idea){
+      if (err) return handleError(err);
+      if (idea) {
+        res.json(idea);
+      } else {
+        res.send(404);
+      }
+    });
+
+  },
+
   // Add a new idea to the MongoDB database.
   newIdea: function(req, res, next) {
 
