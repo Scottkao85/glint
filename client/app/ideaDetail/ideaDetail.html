@@ -8,6 +8,14 @@
   <span class="post-idea-success">Your idea has been posted.</span>
 </div>
 
+<!-- Navigate between contributors and comments -->
+<div class="detail-mode">
+  <ul>
+    <li><a href="#/ideas/{{icbctrl._id}}/contributors">Contributors</a></li>
+    <li><a href="#/ideas/{{icbctrl._id}}/comments">Comments</a></li>
+  </ul>
+</div>
+
 <!-- Idea Row -->
 <div class="row idea-post ng-cloak idea-post-repeat" ng-repeat="idea in ictrl.data.ideas track by idea._id"> 
   <div class="col-md-1">

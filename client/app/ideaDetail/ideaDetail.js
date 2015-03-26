@@ -7,7 +7,7 @@ angular.module('glint.ideaDetail', [])
 .controller('IdeaContributorsCtrl', function (IdeaDetail, Ideas, $filter, $route){
   var self = this;
   self.data = { ideas: [] };
-  self.idea = {};
+  // self.idea = {};
   self.postSuccess = false;
   self.submitted = false;
 
