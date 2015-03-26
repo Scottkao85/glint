@@ -1,6 +1,7 @@
 <!-- <div ng-init="clctrl.init()"></div>
  --><div class="jumbotron jumbo-top"> 
   <h1 class="animated fadeInUp">{{clctrl.idea.title}}</h1>
+  <h4 class="animated fadeInUp">Created {{ clctrl.idea.created_at | moment }} by {{ clctrl.idea.created_by }}</h4>
 </div>
 
 <!-- User Feedback Message Area -->
@@ -18,6 +19,18 @@
 <div class="details-container">
   <!--- left side of page -->
   <div class="details-collaborators">
+    <!-- Important info -->
+    <div class="idea-info">
+      <!--- Original poster, timestamp -->
+      <div>
+        <h3>Description:</h3>
+      </div>
+      <!--- description -->
+      <div>
+        <!--- todo: limit size -->
+        <p>{{ clctrl.idea.text }}</p>
+      </div>
+    </div>
     <!-- Form to join as a collaborator -->
     <form class="form-inline" ng-submit="clctrl.submitCollaborator()">
 
