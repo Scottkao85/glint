@@ -17,19 +17,14 @@
 </div>
 
 <!-- Form to join as a collaborator -->
-<form class="navbar-form navbar-middle" ng-submit="ictrl.submitIdea()">
+<form ng-submit="ictrl.submitIdea()">
 
-  <!-- Enter Idea -->
+  <!-- Enter Your Role -->
   <div class="form-idea animated fadeInUp">
-    <input name="idea-input" type="text" class="form-control form-title-control" placeholder="Enter idea here" ng-model="ictrl.idea.title" required>
+    <input name="idea-input" type="text" class="form-control form-title-control" placeholder="Your role here" ng-model="ictrl.idea.title" required>
   </div>
   
-  <!-- Enter Description -->
-  <div ng-if="ictrl.submitted" class="form-description ng-cloak">
-    <textarea name="description-input" rows="3" class="form-control form-description-control" placeholder="Enter description here" ng-model="ictrl.idea.text"></textarea>
-  </div>
-
-  <button type="submit" class="btn btn-default idea-submit-button animated fadeInUp">Submit</button>
+  <button type="submit" class="btn btn-primary idea-submit-button animated fadeInUp">Become a collaborator</button>
 </form>
 
 <!-- Idea Row -->
