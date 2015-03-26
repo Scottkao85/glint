@@ -105,7 +105,7 @@ glintServices.factory('Votes', function($http){
   };
 });
 
-glintServices.factory('Auth', function ($http, $location, $window) {
+glintServices.factory('Auth', function ($http, $location, $window, $state) {
   var signin = function (user) {
     console.log("check check");
     return $http({
@@ -136,7 +136,7 @@ glintServices.factory('Auth', function ($http, $location, $window) {
 
   var signout = function () {
     $window.localStorage.removeItem('com.glint');
-    $location.path('/signin');
+    $state.go('login');
   };
 
 

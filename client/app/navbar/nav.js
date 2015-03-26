@@ -8,5 +8,4 @@ angular.module('glint.navbar', [])
 
   // Auth signout 
   self.signout = Auth.signout;
-
 });
