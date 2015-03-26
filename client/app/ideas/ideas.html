@@ -34,15 +34,15 @@
     </div>
     <div class="col-md-8">
       <div class="idea-wrapper">
-        <h3 class="idea-title"><a href="#/ideas/{{idea._id}}">{{ idea.title }}</a></h3>
+        <h3 class="idea-title"><a href="#/ideas/{{idea._id}}/contributors">{{ idea.title }}</a></h3>
         <h5 class="idea-description">{{ idea.text | limitTo: 130 }}{{ idea.text.length > 130 ? '...' : ''}}</h5>
         <p class="timestamp-author">Submitted {{ idea.created_at | moment }} by {{ idea.created_by }}</p>
       </div>
     </div>
     <div class="col-md-1 ">
       <div class="comments-wrapper">
-        <i class="fa fa-comments"></i>
-        <p class="comments-amount">532</p>
+        <a href="#/ideas/{{idea._id}}/comments"><i class="fa fa-comments"></i></a>
+        <a href="#/ideas/{{idea._id}}/comments"><p class="comments-amount">532</p></a>
       </div>
     </div>
   </div>
