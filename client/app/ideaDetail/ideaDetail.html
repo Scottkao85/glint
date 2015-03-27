@@ -24,14 +24,23 @@
     <!-- Important info -->
     <div class="idea-info">
       <!--- Original poster, timestamp -->
+      <!--- description -->
       <div>
         <h3>Description</h3>
       </div>
-      <!--- description -->
-      <div>
-        <!--- todo: limit size -->
         <p>{{ clctrl.idea.text }}</p>
       </div>
+
+        <!-- Edit Idea Description (TODO: only let admin do this) -->
+        <form ng-if="false" class="navbar-form navbar-middle ng-cloak animated fadeInUp" ng-submit="clctrl.editDescription()">
+
+          <!-- Enter Description TODO: make height automatic -->
+          <div class="form-description">
+            <textarea name="description-input" rows="3" class="form-control form-description-control" placeholder="Edit description here" ng-model="clctrl.idea.text" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-default idea-submit-button">Edit Description</button>
+        </form>
+      <div>
     </div>
     <!-- Form to join as a collaborator -->
     <br>
