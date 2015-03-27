@@ -12,7 +12,7 @@
         <li><a href="http://adventurous-starfish.github.io/glint/">About</a></li>
         
         <li><a class ="login" href="#/login" ng-show="!nav.token">Login</a></li>
-        <li><a class ="login" href="#/login" ng-show="nav.token">Hello {{nav.username}}</a></li>
+        <li><a class ="login" href="#/login" ng-show="nav.token">{{nav.username}}</a></li>
         <li><a class ="login" href="#/" ng-show="nav.token" ng-click="nav.signout()">Log Out</a></li>
 
         <!-- <li><a href="#"><i class="fa fa-plus"></i></a></li> -->
