@@ -1,5 +1,6 @@
 <!-- <div ng-init="clctrl.init()"></div>
- --><div class="jumbotron jumbo-top"> 
+ -->
+<div class="jumbotron jumbo-top">
   <h1 class="animated fadeInUp">{{clctrl.idea.title}}</h1>
   <h4 class="animated fadeInUp">Created {{ clctrl.idea.created_at | moment }} by {{ clctrl.idea.created_by }}</h4>
 </div>
@@ -32,33 +33,24 @@
       </div>
     </div>
     <!-- Form to join as a collaborator -->
+    <h3>Collaborators:</h3>
     <form class="form-inline" ng-submit="clctrl.submitCollaborator()">
 
       <!-- Enter Your Role -->
       <div class="form-group animated fadeInUp">
-        <input name="idea-input" type="text" class="form-collaborator-textbox" placeholder="Your role here" ng-model="clctrl.newCollaborator.role" required>
+        <input name="idea-input" type="text" class="form-collaborator-textbox" placeholder="What role do you want to play?" ng-model="clctrl.newCollaborator.role" required>
       </div>
-      
+
       <button type="submit" class="btn btn-primary idea-submit-button animated fadeInUp">Become a collaborator</button>
     </form>
 
     <!-- List Collaborators, row by row -->
-    <div class="row idea-post ng-cloak idea-post-repeat" ng-repeat="collaborator in clctrl.collaborators track by collaborator._id"> 
-      <div class="col-md-1">
-      </div>
+    <h3 class="idea-title" ng-repeat="collaborator in clctrl.collaborators track by collaborator._id">{{ collaborator.username }} - {{ collaborator.role }}</h3>
 
-      <div class="idea-container">
-        <div class="col-md-8">
-          <div class="idea-wrapper">
-            <!-- (broken link to user profile) -->
-            <h3 class="idea-title"><a href="/#collaborators">{{ collaborator.username }} - {{ collaborator.role }}</a></h3>
-            </div>
-        </div>
-      </div>
-      <div class="col-md-1">
-      </div>
-    </div>
-    <!---right side of page-->
-    <div class="details-comments">
-    </div>
   </div>
+</div>
+
+<!---right side of page-->
+<div class="details-comments">
+</div>
+</div>

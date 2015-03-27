@@ -1,64 +1,64 @@
-var glintServices = angular.module('glint.services', []);
+var glintServices = angular.module( 'glint.services', [] );
 
-glintServices.factory('Ideas', function ($http){
+glintServices.factory( 'Ideas', function( $http ) {
 
-  var getIdeas = function (){
-    return $http({
+  var getIdeas = function() {
+    return $http( {
       method: 'GET',
       url: '/api/ideas'
-    }).then(function (response){
+    } ).then( function( response ) {
       return response.data;
-    }).catch(function (error) {
-      console.error('getIdeas error', error);
-    });
+    } ).catch( function( error ) {
+      console.error( 'getIdeas error', error );
+    } );
   };
 
-  var createIdea = function (idea){
-    return $http({
+  var createIdea = function( idea ) {
+    return $http( {
       method: 'POST',
       url: '/api/ideas',
       data: idea
-    }).then(function (response){
+    } ).then( function( response ) {
       return response.data;
-    }).catch(function (error) {
-      console.error('createIdeas error', error);
-    });
+    } ).catch( function( error ) {
+      console.error( 'createIdeas error', error );
+    } );
   };
 
   return {
     getIdeas: getIdeas,
     createIdea: createIdea
   };
-});
+} );
 
-glintServices.factory('IdeaDetail', function ($http){
+glintServices.factory( 'IdeaDetail', function( $http ) {
 
-  var getIdea = function(idea_id){
-    return $http({
+  var getIdea = function( idea_id ) {
+    return $http( {
       method: 'GET',
       url: '/api/ideas/' + idea_id
-    }).then(function (response){
-      console.log('factory sees:', response);
+    } ).then( function( response ) {
+      console.log( 'factory sees:', response );
       return response.data;
-    }).catch(function (error) {
-      console.error('getIdeas error', error);
-    });
+    } ).catch( function( error ) {
+      console.error( 'getIdeas error', error );
+    } );
   }
 
-  var addCollaborator = function(collab){
-    console.log('factory adding collab');
-    return $http({
+  var addCollaborator = function( collab ) {
+    console.log( 'factory adding collab' );
+    return $http( {
       method: 'POST',
       url: '/api/collaborators/',
-      data: collab 
-    }).then(function (response){
+      data: collab
+    } ).then( function( response ) {
       return response.data;
-    }).catch(function (error) {
-      console.error('createIdeas error', error);
-    });
+    } ).catch( function( error ) {
+      console.error( 'createIdeas error', error );
+    } );
   };
 
-  var removeCollaborator = function(user_id){
+  var removeCollaborator = function( user_id ) {
 
   };
 
@@ -67,86 +67,77 @@ glintServices.factory('IdeaDetail', function ($http){
     addCollaborator: addCollaborator,
     removeCollaborator: removeCollaborator
   };
-});
+} );
 
-glintServices.factory('Votes', function($http){
+glintServices.factory( 'Votes', function( $http ) {
 
-  var upvote = function (idea){
-    return $http({
-      method: 'POST',
-      url: '/api/vote/upvote',
-      data: idea
-    })
-    .then(function (response){
-      return response.data;
-    })
-    .catch(function (error) {
-      console.error('upvote error', error);
-    });
+  var upvote = function( idea ) {
+    return $http( {
+        method: 'POST',
+        url: '/api/vote/upvote',
+        data: idea
+      } )
+      .then( function( response ) {
+        return response.data;
+      } )
+      .catch( function( error ) {
+        console.error( 'upvote error', error );
+      } );
   };
 
-  var downvote = function (idea){
-    return $http({
-      method: 'POST',
-      url: '/api/vote/downvote',
-      data: idea
-    })
-    .then(function (response){
-      return response.data;
-    })
-    .catch(function (error) {
-      console.error('downvote error', error);
-    });
+  var downvote = function( idea ) {
+    return $http( {
+        method: 'POST',
+        url: '/api/vote/downvote',
+        data: idea
+      } )
+      .then( function( response ) {
+        return response.data;
+      } )
+      .catch( function( error ) {
+        console.error( 'downvote error', error );
+      } );
   };
 
   return {
     upvote: upvote,
     downvote: downvote
   };
-});
+} );
 
-glintServices.factory('Auth', function ($http, $location, $window, $state) {
-  var signin = function (user) {
-    console.log("check check");
-    return $http({
-      method: 'POST',
-      url: '/api/users/signin',
-      data: user
-    })
-    .then(function (resp) {
-      console.log("client side", resp.data);
-      return resp.data;
-    });
+glintServices.factory( 'Auth', function( $http, $location, $window, $state ) {
+  var signin = function( user ) {
+    console.log( "check check" );
+    return $http( {
+        method: 'POST',
+        url: '/api/users/signin',
+        data: user
+      } )
+      .then( function( resp ) {
+        console.log( "client side", resp.data );
+        return resp.data;
+      } );
   };
 
-  var signup = function (user) {
-    return $http({
-      method: 'POST',
-      url: '/api/users/signup',
-      data: user
-    })
-    .then(function (resp) {
-      return resp.data;
-    });
+  var signup = function( user ) {
+    return $http( {
+        method: 'POST',
+        url: '/api/users/signup',
+        data: user
+      } )
+      .then( function( resp ) {
+        return resp.data;
+      } );
   };
 
-  var isAuth = function () {
-    return !!$window.localStorage.getItem('com.glint');
+  var isAuth = function() {
+    return !!$window.localStorage.getItem( 'com.glint' );
   };
 
-  var signout = function () {
-    $window.localStorage.removeItem('com.glint');
-<<<<<<< HEAD
-<<<<<<< HEAD
-    $state.go('login');
-=======
-    $location.path('/signin');
->>>>>>> update: fix login with session cookie
-=======
-    $state.go('login');
->>>>>>> add: UrlRouteProvider :: successfully log in and log out with the correct router
+  var signout = function() {
+    $window.localStorage.removeItem( 'com.glint' );
+    $state.go( 'login' );
   };
-
 
   return {
     signin: signin,
@@ -154,38 +145,36 @@ glintServices.factory('Auth', function ($http, $location, $window, $state) {
     isAuth: isAuth,
     signout: signout
   };
-});
+} );
 
-glintServices.factory('Comments', function ($http){
-  
-  var createComment = function (comment){
-    return $http({
+glintServices.factory( 'Comments', function( $http ) {
+  var createComment = function( comment ) {
+    return $http( {
       method: 'POST',
       url: '/api/comments',
       data: comment
-    }).then(function (response){
+    } ).then( function( response ) {
       return response.data;
-    }).catch(function (error) {
-      console.error('createComments error', error);
-    });
+    } ).catch( function( error ) {
+      console.error( 'createComments error', error );
+    } );
 
   };
 
-  var getComments = function (idea_id){
-    return $http({
+  var getComments = function( idea_id ) {
+    return $http( {
       method: 'GET',
       url: '/api/comments',
       data: idea_id
-    }).then(function (response){
+    } ).then( function( response ) {
       return response.data;
-    }).catch(function (error) {
-      console.error('getComments error', error);
-    });
+    } ).catch( function( error ) {
+      console.error( 'getComments error', error );
+    } );
   };
 
   return {
     createComment: createComment,
     getComments: getComments
   };
-});
-
+} );
