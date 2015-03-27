@@ -43,8 +43,21 @@ glintServices.factory( 'IdeaDetail', function( $http ) {
     } ).catch( function( error ) {
       console.error( 'getIdeas error', error );
     } );
-  }
+  };
 
+  var editDescription = function( idea_id, data ) {
+    console.log( 'factory editing description with data ', data );
+    return $http( {
+      method: 'PUT',
+      url: '/api/ideas/' + idea_id,
+      data: data
+    } ).then( function( response ) {
+      console.log(response);
+      return response.data;
+    } ).catch( function( error ) {
+      console.log( 'editDescription error', error );
+    } );
+  };
 
   var addCollaborator = function( collab ) {
     console.log( 'factory adding collab' );
@@ -99,6 +112,7 @@ glintServices.factory( 'IdeaDetail', function( $http ) {
 
   return {
     getIdea: getIdea,
+    editDescription: editDescription,
 
     addCollaborator: addCollaborator,
     removeCollaborator: removeCollaborator,

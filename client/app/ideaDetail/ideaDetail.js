@@ -27,20 +27,35 @@ angular.module( 'glint.ideaDetail', [] )
     };
 
     self.editDescription = function() {
-
       console.log('editing idea description');
+
+      var data = JSON.stringify({
+        newDescription: self.idea.text,
+      });
+
+      // PUT new description to idea, display confirmation, redisplay page.
+      IdeaDetail.editDescription( self._id, data )
+        .then( function( response ) {
+          self.init();
+        } )
+        .catch( function( error ) {
+          console.error( 'editDescription error', error );
+        } );
+
+      
     };
 
     // Submit a new idea.
     self.submitCollaborator = function( $timeout ) {
 
       // Escape user input.
+
       self.newCollaborator.username = UserInfo.getUsername();
       self.newCollaborator.idea_id = self._id;
       self.newCollaborator.role = _.escape( self.newCollaborator.role );
       var collab = JSON.stringify( self.newCollaborator );
 
-      // POST new idea, display confirmation, redisplay all ideas.
+      // POST new idea, display confirmation, redisplay page.
       IdeaDetail.addCollaborator( collab )
         .then( function( response ) {
           self.init();
