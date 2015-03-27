@@ -10,6 +10,8 @@ var mongoose = require('mongoose'),
 
 
 var UserSchema = new mongoose.Schema({
+  id: mongoose.Schema.ObjectId,
+
   username: {
     type: String,
     required: true,
@@ -52,6 +54,10 @@ UserSchema.methods.comparePasswords = function (candidatePassword) {
     }
   });
   return defer.promise;
+};
+
+UserSchema.methods.getId = function () {
+  return this.id;
 };
 
 UserSchema.pre('save', function (next) {

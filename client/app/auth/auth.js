@@ -5,7 +5,7 @@
 
 angular.module('glint.auth', [])
 
-.controller('AuthCtrl', function($window, $location, Auth){
+.controller('AuthCtrl', function($window, $location, Auth, UserInfo){
   var self = this;
   self.user = {};
 
@@ -17,7 +17,11 @@ angular.module('glint.auth', [])
 
     Auth.signin(user)
       .then(function (session){
-        $window.localStorage.setItem('com.glint', JSON.stringify(session));
+        UserInfo.setUsername(session.username);
+        UserInfo.setId(session.id);
+        // console.log(UserInfo.getUsername());
+        // console.log(UserInfo.getId());
+        $window.localStorage.setItem('com.glint', JSON.stringify(session.token));
         $location.path('/');
       })
       .catch(function (error){
@@ -32,8 +36,8 @@ angular.module('glint.auth', [])
     var user = JSON.stringify(self.user);
 
     Auth.signup(user)
-      .then(function (token){
-        $window.localStorage.setItem('com.shortly', token);
+      .then(function (session){
+        $window.localStorage.setItem('com.glint', JSON.stringify(session));
         $location.path('/');
       })
       .catch(function (error){

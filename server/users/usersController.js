@@ -24,12 +24,19 @@ module.exports = {
           return user.comparePasswords( password )
             .then( function( foundUser ) {
               if ( foundUser ) {
-                var token = jwt.encode( user, 'secret' );
-                res.json( {
-                  token: token,
-                  userName: username
-                } );
-                console.log( "server side", username );
+                var query = User.where({ username: username });
+                query.findOne(function(err, result){
+                  if (err) return handleError(err);
+                  if (result) {
+                    // console.log(result);
+                    var token = jwt.encode( user, 'secret' );
+                    res.json( {
+                      token: token,
+                      id: result._id,
+                      username: result.username,
+                    });
+                  }
+                });
               } else {
                 return next( new Error( 'No user' ) );
               }
@@ -70,7 +77,8 @@ module.exports = {
         // create token to send back for auth
         var token = jwt.encode( user, 'secret' );
         res.json( {
-          token: token
+          token: token,
+          userName: username
         } );
       } )
       .fail( function( error ) {
