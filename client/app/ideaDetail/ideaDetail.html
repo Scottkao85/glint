@@ -37,12 +37,6 @@
     <br>
     <div class="idea-info">
       <h3>Collaborators</h3>
-      <!-- List Collaborators, row by row -->
-      <ul>
-        <li ng-repeat="collaborator in clctrl.collaborators track by collaborator._id">{{ collaborator.username }} - {{ collaborator.role }}
-        </li>
-      </ul>
-      <br>
       <form class="form-inline" ng-submit="clctrl.submitCollaborator()">
 
         <!-- Enter Your Role -->
@@ -51,6 +45,13 @@
           <button type="submit" class="btn btn-primary idea-submit-button">Become a collaborator</button>
         </div>
       </form>
+      <br>
+      <!-- List Collaborators, row by row -->
+      <ul>
+        <li ng-repeat="collaborator in clctrl.collaborators track by collaborator._id">{{ collaborator.username }} - {{ collaborator.role }}
+        </li>
+      </ul>
+      <br>
     </div>
   </div>
 
