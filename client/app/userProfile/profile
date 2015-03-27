@@ -1,0 +1,2 @@
+<div>welcome user</div>
+<div ng-click='pctrl.getUser()'>click me</div>
