@@ -1,11 +1,11 @@
 angular.module('glint.navbar', [])
 
 
-.controller('navbarCtrl', function($window, Auth){
+.controller('navbarCtrl', function($window, Auth, UserInfo){
   var self = this;
   // Retrieve Token and Parse String'd Object
   self.token = JSON.parse($window.localStorage.getItem('com.glint'));
-  self.username = (self.token) ? self.token.userName : 0; 
+  self.username = UserInfo.getUsername();
 
   // Auth signout 
   self.signout = Auth.signout;

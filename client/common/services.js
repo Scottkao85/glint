@@ -195,7 +195,7 @@ glintServices.factory( 'UserDetails', function( $http ) {
 } );
 
 glintServices.factory( 'UserInfo', function() {
-  var username = null;
+  var username = 'not available';
   var id = null;
 
   var setUsername = function(user){
