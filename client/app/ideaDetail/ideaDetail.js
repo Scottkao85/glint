@@ -26,6 +26,11 @@ angular.module( 'glint.ideaDetail', [] )
       } );
     };
 
+    self.editDescription = function() {
+
+      console.log('editing idea description');
+    };
+
     // Submit a new idea.
     self.submitCollaborator = function( $timeout ) {
 
