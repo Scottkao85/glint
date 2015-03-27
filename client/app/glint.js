@@ -81,7 +81,21 @@ var app = angular.module( 'glint', [
           },
 
         }
-      } );
+      })
+      .state( 'users', {
+        url: '/:_id',
+        views: {
+          'header': {
+            templateUrl: 'app/navbar/navview.html',
+            controller: "navbarCtrl as nav"
+          },
+          'content': {
+            // templateUrl: 'app/ideaDetail/ideaDetail.html',
+            // controller: "IdeaCollaboratorsCtrl as clctrl"
+          },
+
+        }
+      });
 
     $urlRouterProvider.otherwise( '/' );
 

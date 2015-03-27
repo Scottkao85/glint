@@ -175,6 +175,50 @@ glintServices.factory( 'Auth', function( $http, $location, $window, $state ) {
   };
 } );
 
+glintServices.factory( 'UserDetails', function( $http ) {
+
+  var getUser = function( username ) {
+    return $http( {
+      method: 'GET',
+      url: '/api/users/' + username
+    } ).then( function( response ) {
+      console.log( 'getUsers sees:', response );
+      return response.data;
+    } ).catch( function( error ) {
+      console.error( 'getUsers error', error );
+    } );
+  }
+
+  return {
+    getUser: getUser,
+  };
+} );
+
+glintServices.factory( 'UserInfo', function() {
+  var username = null;
+  var id = null;
+
+  var setUsername = function(user){
+    username = user;
+  };
+  var setId = function(userid){
+    id = userid;
+  };
+  var getUsername = function(){
+    return username;
+  };
+  var getId = function(){
+    return id;
+  };
+
+  return {
+    setUsername: setUsername,
+    setId: setId,
+    getUsername: getUsername,
+    getId: getId,
+  };
+});
+
 glintServices.factory( 'Comments', function( $http ) {
   var createComment = function( comment ) {
     return $http( {
@@ -205,4 +249,4 @@ glintServices.factory( 'Comments', function( $http ) {
     createComment: createComment,
     getComments: getComments
   };
-} );
+});
