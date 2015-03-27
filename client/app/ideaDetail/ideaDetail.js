@@ -33,7 +33,7 @@ angular.module( 'glint.ideaDetail', [] )
       console.log( 'submitting yourself as a collaborator' );
 
       // Escape user input.
-      self.newCollaborator.created_by = 'Miguel';
+      self.newCollaborator.username = 'Miguel';
       self.newCollaborator.idea_id = self._id;
       self.newCollaborator.role = _.escape( self.newCollaborator.role );
       var collab = JSON.stringify( self.newCollaborator );
