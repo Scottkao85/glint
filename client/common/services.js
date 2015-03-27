@@ -162,9 +162,9 @@ glintServices.factory( 'Auth', function( $http, $location, $window, $state ) {
     return !!$window.localStorage.getItem( 'com.glint' );
   };
 
-  var signout = function() {
-    $window.localStorage.removeItem( 'com.glint' );
-    $state.go( 'login' );
+  var signout = function () {
+    $window.localStorage.removeItem('com.glint');
+    $state.go('login');
   };
 
   return {
