@@ -32,7 +32,7 @@ var app = angular.module('glint', [
       })
     .when('/ideas/:_id/collaborators', {
         templateUrl: 'app/ideaDetail/ideaDetail.html',
-        controller: "IdeaCollaboratorsCtrl as iclctrl"
+        controller: "IdeaCollaboratorsCtrl as clctrl"
       })
     .when('/ideas/:_id/comments', {
         templateUrl: 'app/ideas/ideaDetail.html',
