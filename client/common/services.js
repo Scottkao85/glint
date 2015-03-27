@@ -158,91 +158,92 @@ glintServices.factory( 'Votes', function( $http ) {
   };
 } );
 
-glintServices.factory( 'Auth', function( $http, $location, $window, $state ) {
-  var signin = function( user ) {
-    console.log( "check check" );
-    return $http( {
-        method: 'POST',
-        url: '/api/users/signin',
-        data: user
-      } )
-      .then( function( resp ) {
-        console.log( "client side", resp.data );
-        return resp.data;
+
+  glintServices.factory( 'Auth', function( $http, $location, $window, $state ) {
+    var signin = function( user ) {
+      console.log( "check check" );
+      return $http( {
+          method: 'POST',
+          url: '/api/users/signin',
+          data: user
+        } )
+        .then( function( resp ) {
+          console.log( "client side", resp.data );
+          return resp.data;
+        } );
+    };
+
+    var signup = function( user ) {
+      return $http( {
+          method: 'POST',
+          url: '/api/users/signup',
+          data: user
+        } )
+        .then( function( resp ) {
+          return resp.data;
+        } );
+    };
+
+    var isAuth = function() {
+      return !!$window.localStorage.getItem( 'com.glint' );
+    };
+
+    var signout = function () {
+      $window.localStorage.removeItem('com.glint');
+      $state.go('login');
+    };
+
+    return {
+      signin: signin,
+      signup: signup,
+      isAuth: isAuth,
+      signout: signout
+    };
+  } );
+
+  glintServices.factory( 'UserDetails', function( $http ) {
+
+    var getUser = function( username ) {
+      return $http( {
+        method: 'GET',
+        url: '/api/users/' + username
+      } ).then( function( response ) {
+        console.log( 'getUsers sees:', response );
+        return response.data;
+      } ).catch( function( error ) {
+        console.error( 'getUsers error', error );
       } );
-  };
+    }
 
-  var signup = function( user ) {
-    return $http( {
-        method: 'POST',
-        url: '/api/users/signup',
-        data: user
-      } )
-      .then( function( resp ) {
-        return resp.data;
-      } );
-  };
+    return {
+      getUser: getUser,
+    };
+  } );
 
-  var isAuth = function() {
-    return !!$window.localStorage.getItem( 'com.glint' );
-  };
+  glintServices.factory( 'UserInfo', function() {
+    var username = 'not available';
+    var id = null;
 
-  var signout = function () {
-    $window.localStorage.removeItem('com.glint');
-    $state.go('login');
-  };
+    var setUsername = function(user){
+      username = user;
+    };
+    var setId = function(userid){
+      id = userid;
+    };
+    var getUsername = function(){
+      return username;
+    };
+    var getId = function(){
+      return id;
+    };
 
-  return {
-    signin: signin,
-    signup: signup,
-    isAuth: isAuth,
-    signout: signout
-  };
-} );
-
-glintServices.factory( 'UserDetails', function( $http ) {
-
-  var getUser = function( username ) {
-    return $http( {
-      method: 'GET',
-      url: '/api/users/' + username
-    } ).then( function( response ) {
-      console.log( 'getUsers sees:', response );
-      return response.data;
-    } ).catch( function( error ) {
-      console.error( 'getUsers error', error );
-    } );
-  }
-
-  return {
-    getUser: getUser,
-  };
-} );
-
-glintServices.factory( 'UserInfo', function() {
-  var username = 'not available';
-  var id = null;
-
-  var setUsername = function(user){
-    username = user;
-  };
-  var setId = function(userid){
-    id = userid;
-  };
-  var getUsername = function(){
-    return username;
-  };
-  var getId = function(){
-    return id;
-  };
-
-  return {
-    setUsername: setUsername,
-    setId: setId,
-    getUsername: getUsername,
-    getId: getId,
-  };
-});
+    return {
+      setUsername: setUsername,
+      setId: setId,
+      getUsername: getUsername,
+      getId: getId,
+    };
+  });
 
 
 // merged into IdeaDetail factory

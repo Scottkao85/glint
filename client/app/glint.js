@@ -11,10 +11,12 @@ var app = angular.module( 'glint', [
   'glint.votes',
   'glint.auth',
   'glint.comments',
+  'glint.users',
   'ngAnimate',
   'ngRoute',
   'glint.navbar',
-  'ui.router'
+  'ui.router',
+
 ] )
 
 // Routing configuration, determines which view and controller to use
@@ -82,8 +84,22 @@ var app = angular.module( 'glint', [
 
         }
       })
+      .state( 'profile', { //TODO:
+        url: '/profile',
+        views: {
+          'header': {
+            templateUrl: 'app/navbar/navview.html',
+            controller: "navbarCtrl as nav"
+          },
+          'content': {
+            templateUrl: 'app/userProfile/profile.html',
+            controller: "ProfileCtrl as pctrl"
+          },
+
+        }
+      })
       .state( 'users', {
-        url: '/:_id',
+       url: '/:_id',
         views: {
           'header': {
             templateUrl: 'app/navbar/navview.html',

@@ -111,5 +111,22 @@ module.exports = {
           next( error );
         } );
     }
-  }
+  },
+
+  oneUser: function(req, res, next) {
+
+    var username = req.url.slice(1);
+
+    // Bind the userMongoose find method to the Idea model, so that the Q module can use promises with it.
+    var query = User.where({ username: username });
+    query.findOne(function(err, result){
+      if (err) return handleError(err);
+      if (result) {
+        res.json(result);
+      } else {
+        res.send(404);
+      }
+    });
+  },
+
 };
