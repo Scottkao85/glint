@@ -38,12 +38,13 @@ glintServices.factory( 'IdeaDetail', function( $http ) {
       method: 'GET',
       url: '/api/ideas/' + idea_id
     } ).then( function( response ) {
-      console.log( 'factory sees:', response );
+      // console.log( 'factory sees:', response );
       return response.data;
     } ).catch( function( error ) {
       console.error( 'getIdeas error', error );
     } );
   }
+
 
   var addCollaborator = function( collab ) {
     console.log( 'factory adding collab' );
@@ -62,10 +63,37 @@ glintServices.factory( 'IdeaDetail', function( $http ) {
 
   };
 
+  var createComment = function( comment ) {
+    return $http( {
+      method: 'POST',
+      url: '/api/comments',
+      data: comment
+    } ).then( function( response ) {
+      return response.data;
+    } ).catch( function( error ) {
+      console.error( 'createComments error', error );
+    } );
+  };
+
+  // not necessary at this scale, because getIdeas returns all comments
+  var getComments = function( idea_id ) {
+    return $http( {
+      method: 'GET',
+      url: '/api/comments',
+      data: idea_id
+    } ).then( function( response ) {
+      return response.data;
+    } ).catch( function( error ) {
+      console.error( 'getComments error', error );
+    } );
+  };
+
   return {
     getIdea: getIdea,
     addCollaborator: addCollaborator,
-    removeCollaborator: removeCollaborator
+    removeCollaborator: removeCollaborator,
+    createComment: createComment,
+    getComments: getComments
   };
 } );
 

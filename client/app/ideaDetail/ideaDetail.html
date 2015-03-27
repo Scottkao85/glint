@@ -52,5 +52,19 @@
 
 <!---right side of page-->
 <div class="details-comments">
+    <h3>Comments:</h3>
+    <!-- Form to submit a comment-->
+    <form class="form-inline" ng-submit="clctrl.submitComment()">
+
+      <!-- Enter Your Role -->
+      <div class="form-group animated fadeInUp">
+        <input name="idea-input" type="text" class="form-collaborator-textbox" placeholder="What's your input?" ng-model="clctrl.newComment.text" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary idea-submit-button animated fadeInUp">Post your comment</button>
+    </form>
+
+    <!-- List Comments, row by row -->
+    <h3 class="idea-title" ng-repeat="collaborator in clctrl.comments track by comment._id">{{ comment.username }} - {{ comment.text }}</h3>
 </div>
 </div>
