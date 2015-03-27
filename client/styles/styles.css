@@ -300,19 +300,20 @@ a.glint-logo-icon:link{
 .details-collaborators {
   width: 50%;
   height: 100%;
-  border-right: 1px solid gray;
+  float:left;
 }
 
 .details-comments {
   width: 50%;
   float: right;
+  padding-left:16px;
 }
 
 .idea-info {
   background-color: #f3f3f3;
   padding: 8px 16px 24px 16px;
   margin-bottom: 16px;
-  margin-right: 10px;
+  margin-right: 16px;
   border-radius: 6px;
 }
 
