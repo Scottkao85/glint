@@ -17,7 +17,8 @@
     <li><a href="#/ideas/{{clctrl._id}}/comments">Comments</a></li>
   </ul>
 </div> -->
-<div class="details-container">
+<div class="details-container animated fadeInUp">
+
   <!--- left side of page -->
   <div class="details-collaborators">
     <!-- Important info -->
@@ -45,33 +46,36 @@
       <form class="form-inline" ng-submit="clctrl.submitCollaborator()">
 
         <!-- Enter Your Role -->
-        <div class="form-group animated fadeInUp">
+        <div class="form-group ">
           <input name="idea-input" type="text" class="form-collaborator-textbox" placeholder="What role do you want to play?" ng-model="clctrl.newCollaborator.role" required>
-          <button type="submit" class="btn btn-primary idea-submit-button animated fadeInUp">Become a collaborator</button>
+          <button type="submit" class="btn btn-primary idea-submit-button">Become a collaborator</button>
         </div>
       </form>
     </div>
   </div>
-</div>
 
-<!---right side of page-->
-<div class="details-comments">
-    <h3>Comments:</h3>
-    <!-- Form to submit a comment-->
-    <form class="form-inline" ng-submit="clctrl.submitComment()">
+  <!---right side of page-->
+  <div class="details-comments">
 
-      <!-- Enter Your Role -->
-      <div class="form-group animated fadeInUp">
-        <input name="idea-input" type="text" class="form-collaborator-textbox" placeholder="What's your input?" ng-model="clctrl.newComment.text" required>
+    <div class="idea-info">
+      <h3>Comments</h3>
+      <!-- Form to submit a comment-->
+      <form class="form-inline" ng-submit="clctrl.submitComment()">
+
+        <!-- Enter Your Role -->
+        <div class="form-group ">
+          <input name="idea-input" type="text" class="form-collaborator-textbox" placeholder="Tell it like it is" ng-model="clctrl.newComment.text" required>
+          <button type="submit" class="btn btn-primary idea-submit-button">Post your comment</button>
+        </div>
+
+      </form>
+      <br>
+      <!-- List Comments, row by row -->
+      <div class="comment" ng-repeat="comment in clctrl.comments track by comment._id">
+        <p class="timestamp-author">Posted {{ comment.created_at | moment }} by {{ comment.created_by }}</p>
+        <h5 class="idea-description">{{ comment.text }}</h5>
       </div>
-
-      <button type="submit" class="btn btn-primary idea-submit-button animated fadeInUp">Post your comment</button>
-    </form>
-
-    <!-- List Comments, row by row -->
-    <div class="comment" ng-repeat="comment in clctrl.comments track by comment._id">
-      <p class="timestamp-author">Posted {{ comment.created_at | moment }} by {{ comment.created_by }}</p>
-      <h5 class="idea-description">{{ comment.text }}</h5>
     </div>
+  </div>
 </div>
 </div>
