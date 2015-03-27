@@ -6,16 +6,25 @@
 angular.module( 'glint.ideaDetail', [] )
   .controller( 'IdeaCollaboratorsCtrl', function( $stateParams, IdeaDetail, Ideas, $filter, $route ) {
     var self = this;
+
     self.postSuccess = false;
     self.submitted = false;
+    
     self.newCollaborator = {};
+    self.newComment = {};
+
+
 
     self.init = function() {
 
       self._id = $stateParams._id;
+      console.log(self._id);
       IdeaDetail.getIdea( self._id ).then( function( idea ) {
         self.idea = idea;
+        console.log(self.idea);
         self.collaborators = self.idea.collaborators;
+        self.comments = self.idea.comments;
+
         // TODO: figure out whether current user is creator or a collaborator
         // self.userIsCreator =
         // self.userIsCollaborator =
@@ -46,6 +55,34 @@ angular.module( 'glint.ideaDetail', [] )
           console.error( 'createIdea error', error );
         } );
 
+    };
+
+    // Submit form inputs to the db and display something back to the user on success.
+    self.submitComment = function (idea_id){
+      // if(nav.token.userName){
+
+      // The comment object needs to be populated with form inputs here.
+      // User input will need to be escaped, and stringified. Refer to the comment schema for the fields needed, but likely `self.comment.text`, `self.comment.idea_id`, and `self.comment.created_by` will be necessary.
+
+      // Escape user input.
+      self.newComment.username = 'Gertrude';
+      self.newComment.idea_id = self._id;
+      self.newComment.text = _.escape( self.newComment.text );
+      var comm = JSON.stringify( self.newComment );
+      console.log( "comm: ", comm );
+      var newComment = JSON.stringify( comm );
+
+      // POST new comment, redisplay all ideas.
+      IdeaDetail.createComment( newComment )
+        .then(function (response){
+          self.init();
+        })
+        .catch(function (error){
+          console.error('newComment error', error);
+        });
+      // }else{
+      //   console.log('not logged in')
+      // }
     };
 
     self.init();
