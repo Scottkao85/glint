@@ -105,8 +105,9 @@ glintServices.factory('Votes', function($http){
   };
 });
 
-glintServices.factory('Auth', function ($http, $location, $window) {
+glintServices.factory('Auth', function ($http, $location, $window, $state) {
   var signin = function (user) {
+    console.log("check check");
     return $http({
       method: 'POST',
       url: '/api/users/signin',
@@ -125,17 +126,25 @@ glintServices.factory('Auth', function ($http, $location, $window) {
       data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+      return resp.data;
     });
   };
 
   var isAuth = function () {
-    return !!$window.localStorage.getItem('com.shortly');
+    return !!$window.localStorage.getItem('com.glint');
   };
 
   var signout = function () {
-    $window.localStorage.removeItem('com.shortly');
+    $window.localStorage.removeItem('com.glint');
+<<<<<<< HEAD
+<<<<<<< HEAD
+    $state.go('login');
+=======
     $location.path('/signin');
+>>>>>>> update: fix login with session cookie
+=======
+    $state.go('login');
+>>>>>>> add: UrlRouteProvider :: successfully log in and log out with the correct router
   };
 
 

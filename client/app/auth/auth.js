@@ -17,8 +17,7 @@ angular.module('glint.auth', [])
 
     Auth.signin(user)
       .then(function (session){
-        $window.localStorage.setItem('com.glint', session.token);
-        $window.localStorage.setItem('com.glint.user', session.userName);
+        $window.localStorage.setItem('com.glint', JSON.stringify(session));
         $location.path('/');
       })
       .catch(function (error){

@@ -12,38 +12,125 @@ var app = angular.module('glint', [
   'glint.auth',
   'glint.comments',
   'ngAnimate',
-  'ngRoute'
+  'ngRoute',
+<<<<<<< HEAD
+<<<<<<< HEAD
+  'glint.navbar',
+  'ui.router'
+=======
+  'glint.navbar'
+>>>>>>> add: feature, able to see logged in user name in navbar
+=======
+  'glint.navbar',
+  'ui.router'
+>>>>>>> add: UrlRouteProvider :: successfully log in and log out with the correct router
   ])
 
 // Routing configuration, determines which view and controller to use
-.config(function($routeProvider, $httpProvider){
-	$routeProvider
-		.when('/', {
-        templateUrl: 'app/ideas/ideas.html',
-        controller: "IdeasCtrl as ictrl"
-      })
-    .when('/login', {
-        templateUrl: 'app/auth/login.html',
-        controller: "AuthCtrl as actrl"
-      })
-    .when('/signup', {
-        templateUrl: 'app/auth/signup.html',
-        controller: "AuthCtrl as actrl"
-      })
-    .when('/ideas/:_id/collaborators', {
-        templateUrl: 'app/ideaDetail/ideaDetail.html',
-        controller: "IdeaCollaboratorsCtrl as clctrl"
-      })
-    .when('/ideas/:_id/comments', {
-        templateUrl: 'app/ideas/ideaDetail.html',
-        controller: "AuthCtrl as actrl"
-      })
-    .otherwise({
-        redirectTo: '/'
-      });
+
+.config(function($stateProvider, $urlRouterProvider){
+  $stateProvider
+    .state('ideas',{
+      url: '/',
+      views: {
+        'header': {
+          templateUrl: 'app/navbar/navview.html',
+          controller: "navbarCtrl as nav",
+          cache: false,
+        },
+        'content': {
+           templateUrl: 'app/ideas/ideas.html',
+           controller: "IdeasCtrl as ictrl"
+
+        },
+
+      }
+    })
+    .state('login',{
+      url: '/login',
+      views: {
+        'header': {
+          templateUrl: 'app/navbar/navview.html',
+          controller: "navbarCtrl as nav",
+          cache: false,
+        },
+        'content': {
+           templateUrl: 'app/auth/login.html',
+           controller: "AuthCtrl as actrl"
+
+        },
+
+      }
+    })
+    .state('signup',{
+      url: '/',
+      views: {
+        'header': {
+          templateUrl: 'app/navbar/navview.html',
+          controller: "navbarCtrl as nav",
+          // cache: false,
+        },
+        'content': {
+           templateUrl: 'app/auth/signup.html',
+           controller: "AuthCtrl as actrl"
+
+        },
+
+      }
+    })
+    .state('idea.collaborators',{
+      url: '/ideas/:_id/collaborators',
+      views: {
+        'header': {
+          templateUrl: 'app/navbar/navview.html',
+          controller: "navbarCtrl as nav"
+        },
+        'content': {
+           templateUrl: 'app/ideaDetail/ideaDetail.html',
+  //       controller: "IdeaCollaboratorsCtrl as iclctrl"
+        },
+
+      }
+    })
+    .state('idea.comment',{
+      url: '/ideas/:_id/comments',
+      views: {
+        'header': {
+          templateUrl: 'app/navbar/navview.html',
+          controller: "navbarCtrl as nav"
+        },
+        'content': {
+           templateUrl: 'app/ideas/ideaDetail.html',
+           controller: "AuthCtrl as actrl"
+        },
+
+      }
+    });
+	$urlRouterProvider.otherwise('/');
+
+    // .when('/', {
+  //       templateUrl: 'app/ideas/ideas.html',
+  //       controller: "IdeasCtrl as ictrl"
+  //     })
+  //   .when('/login', {
+  //       templateUrl: 'app/auth/login.html',
+  //       controller: "AuthCtrl as actrl"
+  //     })
+  //   .when('/signup', {
+  //       templateUrl: 'app/auth/signup.html',
+  //       controller: "AuthCtrl as actrl"
+  //     })
+  //   .when('/ideas/:_id/collaborators', {
+  //       templateUrl: 'app/ideaDetail/ideaDetail.html',
+  //       controller: "IdeaCollaboratorsCtrl as iclctrl"
+  //     })
+  //   .when('/ideas/:_id/comments', {
+  //       templateUrl: 'app/ideas/ideaDetail.html',
+  //       controller: "AuthCtrl as actrl"
+  //     })
     // We add our $httpInterceptor into the array
     // of interceptors. Think of it like middleware for your ajax calls
-    $httpProvider.interceptors.push('AttachTokens');
+    // $urlRouteProvider.interceptors.push('AttachTokens');
 })
 .factory('AttachTokens', function ($window) {
   // this is an $httpInterceptor
